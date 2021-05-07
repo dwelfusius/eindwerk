@@ -1,0 +1,16 @@
+[
+    {
+        "name_room": "test_room",
+        "breakout_room": 1.0,
+        "fn_participant": "Katrien",
+        "sn_participant": "Cornelis",
+        "email_participant": "cornelis.katrien@gmail.com"
+    },
+    {
+        "name_room": "test_room",
+        "breakout_room": 2.0,
+        "fn_participant": "Zione",
+        "sn_participant": "Ama",
+        "email_participant": "dwelfusius@gmail.com"
+    }
+]
