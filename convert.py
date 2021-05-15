@@ -41,24 +41,21 @@ def inv_todict(sheet):
 
 def meet_todict(sheet):
     #import pandas read_excel module to inject an excel into a DataFrame
-    import pandas
+    sheet = 'list_webex.xlsx'
     from pandas import read_excel
     # make sure we use the first sheet as source for our dataframe
-    df = read_excel(sheet,sheet_name=0)
-    df.drop(columns=['fn_participant','sn_participant','email_participant'], index=[0], inplace=True)
-    df.drop_duplicates(inplace=True)
+    df = read_excel(sheet,sheet_name=0,usecols=['name_meeting','date_meeting','start_hour','end_hour'])
+    df.drop_duplicates(subset='name_meeting',inplace=True)
     d = {}
+    
+    for i in df.index:
+        d[df['name_meeting'][i]] = [{
+        'date': df['date_meeting'][i],
+        'start': df['start_hour'][i],
+        'end': df['end_hour'][i]}
+        ]
     # for every unique meeting collect all attendees in one list of dictionaries
     # with the needed key-value pairs
-    d = df.to_dict()
+    #d = df.to_dict
     #return dict to be further processed
     return d
-
-'''
-    for meeting in df['name_meeting'].unique():
-        d[meeting] = [{
-        'date_meeting': df['date_meeting'][item],
-        'start': df['start_hour'][item],
-        'end': df['end_hour'][item]} 
-        for item in df[df['name_meeting']==meeting].index]
-        '''
