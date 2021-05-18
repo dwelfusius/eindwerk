@@ -1,5 +1,6 @@
-from convert import meet_todict
-data_dict = meet_todict('list_webex.xlsx','Europe/Brussels')
+from convert import excel_todict
+data_dict = excel_todict('list_webex.xlsx','Europe/Brussels')
+
 import requests
 import json
 
@@ -15,10 +16,12 @@ headers = {
 
 for m in data_dict.items():
     payload= json.dumps(m[1])
-    #print(json.dumps(payload, indent=4))
-    res = requests.post(url, headers=headers, json=payload)
-    print(res.status_code)
+    print(json.dumps(payload, indent=2))
+    #res = requests.post(url, headers=headers, json=payload)
+    #print(res.status_code)
 '''
+
+
 
 
 dict = json.loads(data_dict)
