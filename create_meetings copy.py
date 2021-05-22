@@ -19,15 +19,4 @@ for m in data_dict.items():
     print(json.dumps(payload, indent=2))
     #res = requests.post(url, headers=headers, json=payload)
     #print(res.status_code)
-'''
 
-
-
-
-dict = json.loads(data_dict)
-for m in dict:
-    payload = json.dumps(dict[m])
-    #print(json.dumps(payload, indent=4))
-    res = requests.post(url, headers=headers, json=payload)
-    print(res.status_code)
-'''

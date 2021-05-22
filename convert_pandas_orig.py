@@ -19,7 +19,6 @@ def excel_todict(sheet,tzone_str):
         for item in inv_df[inv_df['name_meeting']==df['name_meeting'][i]].index]
         return d
 
-
     def parse_time(column):
         date = to_datetime(df['date_meeting']+' '+df[column+'_hour'])
         df[column] = date.apply(lambda d: Timestamp(d, tz = tzone_str).isoformat())

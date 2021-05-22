@@ -18,3 +18,6 @@ def sheet2json(sheet):
     d_json = json.dumps(d)
     #return json to be further processed
     return d_json
+
+import excel2json
+excel2json()
