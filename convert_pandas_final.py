@@ -38,8 +38,7 @@ def main():
         'allowAnyUserToBeCoHost': False,
         'invitees': [{ 
             'displayname': i.displayname,
-            'email': i.email_participant
-            }
+            'email': i.email_participant}
         # per meeting collect all attendees in one list of dictionaries 
         for i in sub_df.itertuples()]}
     print(t.timeit())

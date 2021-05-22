@@ -25,7 +25,7 @@ def main():
     t = Timer()
     #read excel file to panda dataframe
     df = read_excel('list_webex.xlsx',sheet_name=0)
-        #transform date and time to iso dates
+    #transform date and time to iso dates
     df['end'],df['start'] = parse_time(['end','start'], df)
     inv_dict = inv_select(df)
     d = {}
@@ -34,15 +34,15 @@ def main():
         #create a subset containing only the rows linked to this meeting
         for mt in df[df['name_meeting']==name].itertuples():
             #per unique meeting create one dictionary object
-            d[mt.name_meeting] = {
-            'title': mt.name_meeting,
+            d[name] = {
+            'title': name,
             'start': mt.start,
             'end'  : mt.end,
             'timezone': tzone_str,
             'enabledAutoRecordMeeting': False,
             'allowAnyUserToBeCoHost': False,
             # per meeting collect all attendees in one list of dictionaries
-            'invitees': inv_dict[mt.name_meeting]}     
+            'invitees': inv_dict[name]}     
     print(t.timeit())
     return d
 
