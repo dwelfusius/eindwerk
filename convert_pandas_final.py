@@ -23,13 +23,13 @@ def main():
     df = transform_df(df, ['end','start'])
     d = {}
     # loop through a unique meeting list created from the df object
-    for name in df['name_meeting'].unique():
+    for mt_name in df['name_meeting'].unique():
         #create a subset containing only the rows belonging to this meeting
-        sub_df = df[df['name_meeting']==name]
+        sub_df = df[df['name_meeting']==mt_name]
         #put the values of the first subset tuple in a pandas frame
         mt = next(sub_df.itertuples())
         #per unique meeting create one dictionary object
-        d[name] = {
+        d[mt_name] = {
         'title': mt.name_meeting,
         'start': mt.start,
         'end'  : mt.end,
@@ -42,6 +42,7 @@ def main():
         # per meeting collect all attendees in one list of dictionaries 
         for i in sub_df.itertuples()]}
     print(t.timeit())
+    print(d)
     return d
 
 # execute main when called directly

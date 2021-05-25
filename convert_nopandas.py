@@ -5,6 +5,8 @@ from datetime import datetime as dt
 from backports.zoneinfo import ZoneInfo as zi
 t = Timer()
 
+tzone_str = 'Europe/Brussels'
+
 def parse_time(column, do):
     #merge date + hour into one string
     d = do['date_meeting']+' '+do[column+'_hour']+':00'
@@ -43,6 +45,7 @@ def get_meetings(mt_list,headers):
             headers[3] : mt[3]
             }
             unimt_dicts[mt[0]] = unimt_dict
+    return unimt_dicts
 
 def get_invitees(uni_mt,mt_list):
     inv_dicts = {}
@@ -64,11 +67,10 @@ def main():
     # Open the workbook and select a worksheet
     wb = px.load_workbook('list_webex.xlsx')
     sheet = wb['list_webex']
-    tzone_str = 'Europe/Brussels'
     headers = get_headers(sheet)
     rows    = get_rows(sheet)
     mt_dict = get_meetings(rows, headers)
-    invitees   = get_invitees(unimt_dict, rows)
+    invitees   = get_invitees(mt_dict, rows)
 # Create list to collect information to convert to json
     mts_tree = {}
     for mt in mt_dict.items():
@@ -82,13 +84,14 @@ def main():
         'start' : parse_time('start', mt),
         'end' : parse_time('end', mt),
         'timezone' : tzone_str,
-        'enabledAutoRecordmt' : False,
+        'enabledAutoRecordMeeting' : False,
         'allowAnyUserToBeCoHost' : False,
         'invitees' : invitees[title]
         }
         # Add one mt dict object to final dataset
         mts_tree[title] = mt_tree
     print(t.timeit())
+    print(mts_tree)
     return mts_tree
 
 

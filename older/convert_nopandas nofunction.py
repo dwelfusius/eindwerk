@@ -61,7 +61,7 @@ for mt in unimt_dicts.items():
     inv_dicts[mt[0]] = inv_list
 
 # Create list to collect information to convert to json
-treemts_dict = {}
+treemt_dicts = {}
 for mt in unimt_dicts.items():
     # replace mt by mt values to avoid unneeded '[1]' entries
     mt = mt[1]
@@ -78,9 +78,23 @@ for mt in unimt_dicts.items():
     'invitees' : inv_dicts[title]
     }
     # Add one mt dict object to final dataset
-    treemts_dict[title] = treemt_dict
+    treemt_dicts[title] = treemt_dict
 
 # 
-print(treemts_dict)
+print(treemt_dicts)
 print(t.timeit())
 
+print('a  ')
+print(type(inv_list))
+print('b  ')
+print(type(inv_dict))
+print('c  ')
+print(type(inv_dicts))
+print('d  ')
+print(type(treemt_dict))
+print('e  ')
+print(type(treemt_dicts))
+print('f  ')
+print(type(unimt_dicts))
+print('g ')
+print(type(mt_list))
