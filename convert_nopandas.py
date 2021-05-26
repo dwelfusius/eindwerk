@@ -8,8 +8,12 @@ t = Timer()
 tzone_str = 'Europe/Brussels'
 
 def parse_time(column, do):
-    #merge date + hour into one string
-    d = do['date_meeting']+' '+do[column+'_hour']+':00'
+    #merge date + hour into one string, choose method based on object type
+    if type(do['date_meeting']) == dt:
+        d_str = do['date_meeting']
+        d = str(d_str.day)+'/'+str(d_str.month)+'/'+str(d_str.year)+' '+do[column+'_hour'] +':00'
+    else:
+        d = do['date_meeting']+' '+do[column+'_hour'] +':00'
     #create a datetime object
     date = dt.strptime(d, '%d/%m/%Y %H:%M:%S').replace(tzinfo=zi(tzone_str))
     #make the date object timezone aware
@@ -41,8 +45,8 @@ def get_meetings(mt_list,headers):
             unimt_dict = {
             headers[0] : mt[0],
             headers[1] : mt[1],
-            headers[2] : mt[2],
-            headers[3] : mt[3]
+            headers[2] : str(mt[2])[0:5],
+            headers[3] : str(mt[3])[0:5]
             }
             unimt_dicts[mt[0]] = unimt_dict
     return unimt_dicts
@@ -57,7 +61,8 @@ def get_invitees(uni_mt,mt_list):
             if mt[0] in i:
                 inv_dict = {
                 'displayname' : i[4]+' '+i[5],
-                'email' : i[6]}
+                'email' : i[6],
+                'coHost': i[7]}
                 inv_list.append(inv_dict.copy())     
         inv_dicts[mt[0]] = inv_list
     return inv_dicts

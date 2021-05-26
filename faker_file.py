@@ -1,34 +1,32 @@
 import pandas as pd
-sheet = 'list_webex.xlsx'
 from faker import Faker
 import random
-
-
-
 
 fake = Faker()
 Faker.seed(0)
 
-mylist = ["False"] * 14 + ["True"]
+hostList = ["False"] * 14 + ["True"]
+hostEmaillist = ["eindwerk.user1@outlook.be","eindwerk.user2@outlook.be","eindwerk.user3@outlook.be"]
 
-orig_df = pd.read_excel(sheet,sheet_name=0)
 l = []
-for c in list(range(0,32)):
-    host = random.choice(mylist)
-    print(host)
-    nums = list(range(1,12))
-    for n in nums: 
-        
+nums = list(range(1,12))
+for n in nums: 
+    date = fake.date_between(start_date='today', end_date='+10d')
+    title = n.__str__()
+    for c in list(range(0,32)):
+        host = random.choice(hostList)
         d = {}
-        d['name_meeting'] = 'test_meeting' + n.__str__()
-        d['date_meeting'] = '20/'+n.__str__()+'/2021'
+        d['name_meeting'] = 'test_meeting' + title
+        d['date_meeting'] = date.strftime(fmt='%d/%m/%Y')
         d['start_hour']   = '19:00'
         d['end_hour']     = '21:00'
         d['fn_participant']   = fake.first_name()
         d['sn_participant']    = fake.last_name()
-        d['email_participant'] = fake.email()
+        if host=="True":
+            d['email_participant'] = random.choice(hostEmaillist)
+        else:
+            d['email_participant'] = fake.email()
         d['host'] = host
         l.append(d)
 new = pd.DataFrame(l)
-#new = orig_df.append(l, ignore_index=True)
 new.to_excel('list_webex.xlsx',sheet_name='list_webex',index=False)
