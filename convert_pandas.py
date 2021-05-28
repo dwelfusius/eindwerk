@@ -24,7 +24,6 @@ def inv_select(df):
         'coHost' : item.host
         }
         for item in df[df['name_meeting']==mt_name].itertuples()]    
-
     return inv_dic
 
 def main():
