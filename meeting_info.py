@@ -11,6 +11,12 @@ from timeit import Timer
 
 
 
+def parse_time(cols, df):
+    col_list = []
+    for c in cols:
+        col_list.append(pan_dt(df[c]))
+    return col_list
+
 
 def get_emails_excel(emails):
     df = pd.DataFrame()
@@ -45,30 +51,39 @@ def pages_list(url):
         print('---1-- NoK')
         print(f_page.status_code,f_page.url, f_page.reason)
 
+
 def part_list(meetingId):
     url = f"https://webexapis.com/v1/meetingParticipants?meetingId={meetingId}"
     response = requests.get(url, headers=env['headers'])
     if response.status_code==200:
         dict = json.loads(response.text)
         #print('ok')
-        return dict["items"]
+        return(dict["items"].__iter__())
     else:
         print(response.status_code,response.url, response.reason)
+        return None
 
 def get_part_stats(m):
     part = (part_list(m.id))
-    if type(part) is list:
-        df = pd.DataFrame(part)["devices"]        
+    if part:
+        part_df = pd.DataFrame()
+        trigger = True
+        while trigger:
+            try:
+                dict = next(part)
+                part_df = part_df.append((dict['devices'][0]), ignore_index=True)
+            except:
+                trigger=False             
+        #part_df['joinedTime'],part_df['leftTime'] = parse_time(['joinedTime','leftTime'],part_df)
+        pan_dt(part_df['joinedTime'], inplace=True)
+        pan_dt(part_df['leftTime'], inplace=True)
         mins = 0
-        for i in df:
-            left = pan_dt(i[0]['leftTime'])
-            joined = pan_dt(i[0]['joinedTime'])
-            mins += pd.Timedelta(left - joined).seconds / 60.0
+        for i in part_df.itertuples():
+            mins += pd.Timedelta(i.leftTime - i.joinedTime).seconds / 60.0
         part_dict = {
-        'Total_Participant_Min': int(mins),
-        'Total_Participants': len(df)
+        'Participant_Min': int(mins),
+        'Participants': len(part_df)
             }
-        #print('ok')
         return part_dict
     else:
         print('Nok part')
@@ -76,8 +91,7 @@ def get_part_stats(m):
 
 
 def get_param(age_month):
-    #date_d = delta(months=int('-'+str(age_month)))
-    date_d = delta(days=-31)    
+    date_d = delta(days=-4)    
     date   = dt.today() + delta(days=+1)
     param_dict = {
         'to': date.strftime(format='%Y-%m-%d'),
@@ -85,68 +99,63 @@ def get_param(age_month):
         'siteUrl': env['siteUrl'],
         'max': 100
     }
-    #print('---4-- ok')
     return param_dict
 
 def get_meeting(m):
     mt_dict = {
         'id': m.id,
-        #'day' : dt.strftime(dt.strptime(m.start[0:10],'%Y-%m-%d'), format='%d/%m/%Y'),
         'day' : dt.strftime(m.start, format='%d/%m/%Y'),
         'start': m.start,
-        'end': m.end, 
-        'hostUserId': m.hostUserId
+        'end': m.end
     }
-    print('---5-- ok')
     return mt_dict
 
 def get_stats_df(df):
     cp_df = df.copy(deep=True)
     cp_df.fillna(0, inplace=True, downcast='infer')
-    for r in cp_df.iterrows():   
-        for i in df:
-            left = pan_dt(i[0]['leftTime'])
-            joined = pan_dt(i[0]['joinedTime'])
-            mins = mins + pd.Timedelta(left - joined).seconds / 60.00
-        part_dict = {
-            'Total_Participant_Min': mins,
-            'Total_Participants': len(df)
-        }
-        part_df = part_df.append(part_dict, ignore_index=True, inplace=True)
-
-    df = pd.DataFrame(list).result.fillna(0, inplace=True, downcast='infer')
+    df_dict = {}
+    for day in cp_df['day'].unique():
+        subset = cp_df[cp_df['day']==day].reset_index()
+        mins = 0
+        df_dict[day] = {
+        'Day': day,
+        'Total_Meetings': subset.count().day,
+        'Total_Meeting_Min': mins + pd.Timedelta(subset.end[0] - subset.start[0]).seconds / 60, 
+        'Total_Participants': subset.sum().Total_Participants,
+        'Total_Participant_Min': subset.sum().Total_Participant_Min,
+        'Total_Participants': subset.sum().Total_Participants}
+    stat_df = pd.DataFrame(df_dict.values(), ignore_index=True)
+    return stat_df
 
 
 def main():
     t = Timer()
-    print(t.timeit())
     #people_list = pd.read_excel('people.xlsx')['people'].tolist()
     url = "https://webexapis.com/v1/"
     people_list  = get_emails(pages_list(f'{url}people'))
-    print(t.timeit())
     param_dict = get_param(age_month=3)
-    print(t.timeit())
     mt_df = pd.DataFrame()
     for person in people_list:
         param_dict['hostEmail'] = person
         uri = f"{url}meetings?{urlencode(param_dict)}"
         pages = pages_list(uri)
         for page in pages:
-            df = pd.DataFrame(page["items"])
-            for mt in df.iterrows():
-                tm.sleep(2)
-                mt_row = mt[1]
-                mt_dict = get_meeting(mt_row)
-                part_dict = get_part_stats(mt_row)
-                dict = {**part_dict,**mt_dict}
-                mt_df = mt_df.append(dict, ignore_index=True)
-    print(t.timeit())
-    mt_df.to_excel(f'meeting.xlsx',sheet_name='meetings',index=False)
+            p_df = pd.DataFrame(page["items"])
+            if not p_df.empty:
+                p_df['start'],p_df['end'] = parse_time(['start','end'],p_df)
+                for mt in p_df.iterrows():
+                    tm.sleep(2)
+                    mt_row = mt[1]
+                    mt_dict = get_meeting(mt_row)
+                    part_dict = get_part_stats(mt_row)
+                    dict = {**part_dict,**mt_dict}
+                    mt_df = mt_df.append(dict, ignore_index=True)
+    #mt_df.to_excel(f'meeting.xlsx',sheet_name='meetings',index=False)
     mts_df = get_stats_df(mt_df)
     print(t.timeit())
-    df.to_excel(f'meeting.xlsx',sheet_name='meetings',index=False)
+    #df.to_excel(f'meeting.xlsx',sheet_name='meetings',index=False)
     #meetings_df = get_stats_df(list)
-    #meetings_df.to_excel(f'meeting_stats_{param_dict["from"]}-{param_dict["to"]}.xlsx',sheet_name='meetings',index=False)
+    mts_df.to_excel(f'meeting_stats_{param_dict["from"]}-{param_dict["to"]}.xlsx',sheet_name='meetings',index=False)
 
 # execute main when called directly
 if __name__ == '__main__':
