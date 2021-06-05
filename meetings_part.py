@@ -1,6 +1,4 @@
-from environment import biasc as env
-#from environment import int_report as env
-#from environment import int_automation as env
+from environment import int_automation as env
 import requests
 from datetime import datetime as dt
 from dateutil.relativedelta import relativedelta  as r_delta
@@ -10,10 +8,11 @@ import json
 fail_req = []
 
 def get_meetings():
-    """get_meetings [summary]
+    """get_meetings Retrieve all meetings created by the chosen
+    automation account.
 
-    :return: [description]
-    :rtype: [type]
+    :return: all the meetings adhering to parameters
+    :rtype: dict
     """
     params = meeting_params()
     url = "https://webexapis.com/v1/meetings"
@@ -21,12 +20,13 @@ def get_meetings():
     return json.loads(response.text)
 
 def inv_count(meetingId):
-    """inv_count [summary]
+    """inv_count Count the invitees for a passed meeting id
+    and return them as an integer. On error return 0.
 
-    :param meetingId: [description]
-    :type meetingId: [type]
-    :return: [description]
-    :rtype: [type]
+    :param meetingId: a webex meeting
+    :type meetingId: str
+    :return: total count of invitees
+    :rtype: int
     """
     params = {
         'meetingId':meetingId,
@@ -118,14 +118,17 @@ def get_part_stats(m):
         }
         return part_stats_dict
 
-def meeting_params():
-    """meeting_params [summary]
+def meeting_params(months=1):
+    """meeting_params Retrieve the parameters needed to
+    list meetings for the report.
 
-    :return: [description]
-    :rtype: [type]
+    :param months: time offset in months, defaults to 1
+    :type months: int, optional
+    :return: parameters for list meeting request
+    :rtype: dict
     """
     date = dt.today() + r_delta(days=+1)
-    delta = r_delta(months=-1)
+    delta = r_delta(months=months)
     date_to = date.strftime(format='%Y-%m-%d')
     date_from = (date + delta).strftime(format='%Y-%m-%d')
     siteUrl = env['siteUrl']
