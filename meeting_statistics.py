@@ -1,7 +1,6 @@
 import requests
 import json
-from environment import biasc as env
-#from environment import int_report as env
+from environment import int_report as env
 from datetime import datetime as dt
 from dateutil.relativedelta import relativedelta as delta
 from pandas import pandas as pd, to_datetime as todate
