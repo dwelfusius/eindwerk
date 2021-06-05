@@ -5,12 +5,14 @@ import random
 fake = Faker()
 Faker.seed(0)
 
+""" Create a choice list of booleans, to randomly select host value.
+hostEmails list is used to select email from if host==True"""
 hostList = ["False"] * 14 + ["True"]
-hostEmaillist = ["eindwerk.user1@outlook.be","eindwerk.user2@outlook.be","eindwerk.user3@outlook.be"]
+hostEmaillist = ["eindwerk.user2@outlook.be","eindwerk.user3@outlook.be"]
 
 l = []
 nums = list(range(1,12))
-for n in nums: 
+for n in nums:
     date = fake.date_between(start_date='today', end_date='+10d')
     title = n.__str__()
     for c in list(range(0,32)):
