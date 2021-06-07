@@ -1,0 +1,9 @@
+create_meetings module
+**********************
+
+create_meetings.main()
+
+   Main without parameters will generate a dictionary based on the
+   defaults timezone:Europe/Brussels and file:list_webex.xlsx. If
+   another file or timezone is required you can enter one or both
+   underneath.

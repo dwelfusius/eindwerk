@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>convert_excel &#8212; Webex Meeting Automations 15/06/2021 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="convert_excel_nopandas" href="convert_excel_nopandas.html" />
+    <link rel="prev" title="Welcome to Eindwerk Webex Automation’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-convert_excel">
+<span id="convert-excel"></span><h1>convert_excel<a class="headerlink" href="#module-convert_excel" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="convert_excel.inv_select">
+<span class="sig-prename descclassname"><span class="pre">convert_excel.</span></span><span class="sig-name descname"><span class="pre">inv_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel.inv_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>inv_select Per meeting collect all attendees in one 
+list of dictionaries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>DataFrame</em>) – dataframe to fetch data from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nested dict with all attendees per meeting name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="convert_excel.main">
+<span class="sig-prename descclassname"><span class="pre">convert_excel.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tzone_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Europe/Brussels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list_webex.xlsx'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>main Converts an excel file to a dict suitable for creating
+webex meetings via the Webex REST api</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tzone_str</strong> (<em>str</em><em>, </em><em>optional</em>) – desired timezone, defaults to ‘Europe/Brussels’</p></li>
+<li><p><strong>sheet</strong> (<em>str</em><em>, </em><em>optional</em>) – desired source file, defaults to ‘list_webex.xlsx’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a nested dict of unique meetings + participants</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="convert_excel.parse_time">
+<span class="sig-prename descclassname"><span class="pre">convert_excel.</span></span><span class="sig-name descname"><span class="pre">parse_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tzo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel.parse_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse_time Function to parse strings to time zone aware 
+datetime objects, and then convert them to ISO8601 format strings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cols</strong> (<em>list</em>) – list of time columns</p></li>
+<li><p><strong>df</strong> (<em>DataFrame</em>) – source df to process</p></li>
+<li><p><strong>tzo</strong> (<em>string</em>) – time zone</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of modified columns</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Webex Meeting Automations</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">convert_excel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert_excel_nopandas.html">convert_excel_nopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_meetings.html">create_meetings module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meetings_part.html">meetings_part</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meeting_statistics.html">meeting_statistics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">environment</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Eindwerk Webex Automation’s documentation!</a></li>
+      <li>Next: <a href="convert_excel_nopandas.html" title="next chapter">convert_excel_nopandas</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Katrien Cornelis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/convert_excel.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

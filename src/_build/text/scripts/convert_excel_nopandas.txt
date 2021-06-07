@@ -1,0 +1,14 @@
+convert_excel_nopandas
+**********************
+
+convert_excel_nopandas.get_headers(sheet)
+
+convert_excel_nopandas.get_invitees(uni_mt, mt_list)
+
+convert_excel_nopandas.get_meetings(mt_list, headers)
+
+convert_excel_nopandas.get_rows(sheet)
+
+convert_excel_nopandas.main(file='list_webex.xlsx', tzone_str='Europe/Brussels')
+
+convert_excel_nopandas.parse_time(column, do, tzone_str)

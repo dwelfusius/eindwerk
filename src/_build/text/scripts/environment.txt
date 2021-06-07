@@ -1,0 +1,7 @@
+environment
+***********
+
+This file contains the bearer tokens and other information used in
+testing the scripts. You can think of it as a postman environment.
+It’s NOT recommended to put production data into this file. Especially
+no tokens.

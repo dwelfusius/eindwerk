@@ -1,0 +1,109 @@
+meeting_statistics module
+*************************
+
+meeting_statistics.get_mailaddress(pages)
+
+   get_mailaddress Iterates over webex people api responses
+
+   Parameters:
+      **pages** (*dict*) – http response pages
+
+   Returns:
+      a list of unique emailadresses
+
+   Return type:
+      list
+
+meeting_statistics.get_meeting(m)
+
+   get_meeting Create a dictionary from passed meeting
+
+   Parameters:
+      **m** (*list*) – a list of dictionaries with meeting details
+
+   Returns:
+      dictionary with meeting information
+
+   Return type:
+      dict
+
+meeting_statistics.get_param(time_unit='days', age=14)
+
+   get_param morph the needed parameter values in into a dict object
+   to use in the api request
+
+   Parameters:
+      * **time_unit** (*str**, **optional*) – time measurement to use,
+        defaults to ‘days’ hours,days,weeks,months (plural!) are all
+        valid
+
+      * **age** (*int**, **optional*) – to substract in time unit from
+        today, defaults to int(14)
+
+   Returns:
+      dictionary with parameter values
+
+   Return type:
+      dict
+
+meeting_statistics.get_part_stats(m)
+
+   get_part_stats Calculate amount of participants and minutes in
+   meeting info of passed meeting.
+
+   Parameters:
+      **m** (*list*) – a list of dictionaries with meeting details
+
+   Returns:
+      calculated participant count and attendance per meeting
+
+   Return type:
+      dict
+
+meeting_statistics.get_stats_df(meetings_df)
+
+   get_stats_df Copy passed DataFrame,use it to calculate totals and
+   averages per day/meeting/participants, sort, adds a total rows and
+   export as DF
+
+   Parameters:
+      **meetings_df** – DataFrame with all meetings and participant
+      totals
+
+   Returns:
+      calculated and sorted meeting statistics
+
+   Return type:
+      DataFrame
+
+meeting_statistics.main()
+
+meeting_statistics.pages_list(url)
+
+   pages_list Performs a GET against the passed url and potential
+   next pages. Returns the response text in json if available, logs
+   error code on fail
+
+   Parameters:
+      **url** (*str*) – url with parameters encoded via urllib
+
+   Yield:
+      response text from request
+
+   Return type:
+      json
+
+meeting_statistics.part_list(meetingId)
+
+   part_list Performs a GET to retrieve participants of the  passed
+   meeting. Returns them as a list if available,  logs error code on
+   fail
+
+   Parameters:
+      **meetingId** (*str*) – a webex meeting ID
+
+   Returns:
+      the items key value from the get request
+
+   Return type:
+      list
