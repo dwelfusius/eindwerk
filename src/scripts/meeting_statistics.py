@@ -1,7 +1,6 @@
 import requests
 import json
-from environment import biasc as env
-#from environment import int_report as env
+from environment import int_report as env
 from datetime import datetime as dt
 from dateutil.relativedelta import relativedelta as delta
 from pandas import pandas as pd, to_datetime as todate
@@ -13,12 +12,15 @@ fail_req = []
 
 
 def get_mailaddress(pages):
-    """get_mailaddress Iterates over webex people api responses 
+    """**get_mailaddress** Iterates over webex people api responses 
 
     :param pages: http response pages
     :type pages: dict
     :return: a list of unique emailadresses
     :rtype: list
+    
+    |
+
     """
 
     list_mails = []
@@ -29,7 +31,7 @@ def get_mailaddress(pages):
 
 
 def pages_list(url):
-    """pages_list Performs a GET against the passed url and potential 
+    """**pages_list** Performs a GET against the passed url and potential 
     next pages. Returns the response text in json if available, logs
     error code on fail
 
@@ -37,6 +39,9 @@ def pages_list(url):
     :type url: str
     :yield: response text from request
     :rtype: json
+    
+    |
+    
     """
     f_page = requests.get(url, headers=env['headers'])
     if f_page.status_code == 200:
@@ -56,7 +61,7 @@ def pages_list(url):
 
 
 def part_list(meetingId):
-    """part_list Performs a GET to retrieve participants of the 
+    """**part_list** Performs a GET to retrieve participants of the 
     passed meeting. Returns them as a list if available, 
     logs error code on fail
 
@@ -64,6 +69,9 @@ def part_list(meetingId):
     :type meetingId: str
     :return: the items key value from the get request
     :rtype: list
+    
+    |
+    
     """
     url = "https://webexapis.com/v1/meetingParticipants"
     uri = f"{url}?meetingId={meetingId}"
@@ -77,13 +85,16 @@ def part_list(meetingId):
 
 
 def get_part_stats(m):
-    """get_part_stats Calculate amount of participants and minutes in 
+    """**get_part_stats** Calculate amount of participants and minutes in 
     meeting info of passed meeting.
 
     :param m: a list of dictionaries with meeting details
     :type m: list
     :return: calculated participant count and attendance per meeting
     :rtype: dict
+    
+    |
+    
     """
     parts = (part_list(m.id))
     if parts:
@@ -110,7 +121,7 @@ def get_part_stats(m):
 
 
 def get_param(time_unit='days', age=int(14)):
-    """get_param morph the needed parameter values in into a dict object
+    """**get_param** morph the needed parameter values in into a dict object
     to use in the api request
 
     :param time_unit: time measurement to use, defaults to 'days'
@@ -120,6 +131,9 @@ def get_param(time_unit='days', age=int(14)):
     :type age: int, optional
     :return: dictionary with parameter values
     :rtype: dict
+    
+    |
+    
     """
     date_d = delta(**{time_unit: age.__neg__()})
     date = dt.today() + delta(days=+1)
@@ -133,12 +147,15 @@ def get_param(time_unit='days', age=int(14)):
 
 
 def get_meeting(m):
-    """get_meeting Create a dictionary from passed meeting
+    """**get_meeting** Create a dictionary from passed meeting
 
     :param m: a list of dictionaries with meeting details
     :type m: list
     :return: dictionary with meeting information
     :rtype: dict
+    
+    |
+    
     """
     mt_dict = {
         'id': m.id,
@@ -151,14 +168,17 @@ def get_meeting(m):
 
 
 def get_stats_df(meetings_df):
-    """get_stats_df Copy passed DataFrame,use it to calculate totals
-    and averages per day/meeting/participants, sort, adds a total rows
+    """**get_stats_df** Copy passed *DataFrame*, use it to **calculate totals
+    and averages per day/meeting/participants**, sort, adds a total rows
     and export as DF
 
     :param meetings_df: DataFrame with all meetings and participant totals
     :type df: DataFrame
     :return: calculated and sorted meeting statistics
     :rtype: DataFrame
+    
+    |
+    
     """
     if not meetings_df.empty:
         cp_df = meetings_df.copy(deep=True)
@@ -217,6 +237,13 @@ def get_stats_df(meetings_df):
 
 
 def main():
+    """**main** In this module we will gather **statistics** from all meetings
+    held in the Webex site. See function info for parameter 
+    modification.
+    
+    |
+    
+    """
     begin_time = dt.now()
     print(dt.now())
     url = "https://webexapis.com/v1/"

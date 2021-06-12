@@ -15,6 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="meetings_part_stats" href="meetings_part.html" />
+    <link rel="prev" title="convert_excel_nopandas" href="convert_excel_nopandas.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +38,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="create_meetings.main">
 <span class="sig-prename descclassname"><span class="pre">create_meetings.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#create_meetings.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>Main without parameters will generate a dictionary based on
+<dd><p><strong>main</strong>  Main from convert_excel without parameters will generate a dictionary based on
 the defaults timezone:Europe/Brussels and file:list_webex.xlsx.
 If another file or timezone is required you can enter one or
 both underneath.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>For every entry in the data dict the child dict is converted to
+JSON and sent via a POST request to the WEBEX REST API. This creates
+the meeting and checks if status_code==200. If not an error is printed</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </dd></dl>
 
 </section>
@@ -61,11 +72,23 @@ both underneath.</p>
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="convert_excel.html">convert_excel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert_excel_nopandas.html">convert_excel_nopandas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">create_meetings module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meetings_part.html">meetings_part_stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meeting_statistics.html">meeting_statistics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faker_file.html">faker_file</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="convert_excel_nopandas.html" title="previous chapter">convert_excel_nopandas</a></li>
+      <li>Next: <a href="meetings_part.html" title="next chapter">meetings_part_stats</a></li>
   </ul></li>
 </ul>
 </div>
