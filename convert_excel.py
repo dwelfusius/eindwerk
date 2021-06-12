@@ -2,7 +2,7 @@ from pandas import read_excel, to_datetime, Timestamp
 
 
 def parse_time(cols, df, tzo):
-    """**parse_time** Function to parse strings to time zone aware 
+    """**parse_time** - Function to parse strings to time zone aware 
     datetime objects, and then convert them to ISO8601 format strings
 
     :param cols: list of time columns
@@ -26,7 +26,7 @@ def parse_time(cols, df, tzo):
 
 
 def inv_select(df):
-    """**inv_select** Per meeting collect all attendees in one 
+    """**inv_select** - Per meeting collect all attendees in one 
     list of dictionaries
 
     :param df: dataframe to fetch data from
@@ -49,7 +49,7 @@ def inv_select(df):
 
 
 def main(tzone_str='Europe/Brussels', sheet='list_webex.xlsx'):
-    """**main** Converts an excel file to a dict suitable for creating
+    """**main** - Converts an excel file to a dict suitable for creating
     webex meetings via the Webex REST api
 
     :param tzone_str: desired timezone, defaults to 'Europe/Brussels'

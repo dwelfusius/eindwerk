@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="environment" href="environment.html" />
-    <link rel="prev" title="meetings_part" href="meetings_part.html" />
+    <link rel="prev" title="meetings_part_stats" href="meetings_part.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -38,7 +38,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.get_mailaddress">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">get_mailaddress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pages</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.get_mailaddress" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>get_mailaddress</strong> Iterates over webex people api responses</p>
+<dd><p><strong>get_mailaddress</strong> - Iterates over webex people api responses</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pages</strong> (<em>dict</em>) – http response pages</p>
@@ -58,7 +58,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.get_meeting">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">get_meeting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.get_meeting" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>get_meeting</strong> Create a dictionary from passed meeting</p>
+<dd><p><strong>get_meeting</strong> - Create a dictionary from passed meeting</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>m</strong> (<em>list</em>) – a list of dictionaries with meeting details</p>
@@ -78,7 +78,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.get_param">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'days'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.get_param" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>get_param</strong> morph the needed parameter values in into a dict object
+<dd><p><strong>get_param</strong> - Morph the needed parameter values in into a dict object
 to use in the api request</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -103,7 +103,7 @@ hours,days,weeks,months (plural!) are all valid</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.get_part_stats">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">get_part_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.get_part_stats" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>get_part_stats</strong> Calculate amount of participants and minutes in 
+<dd><p><strong>get_part_stats</strong> - Calculate amount of participants and minutes in 
 meeting info of passed meeting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -124,7 +124,7 @@ meeting info of passed meeting.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.get_stats_df">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">get_stats_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meetings_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.get_stats_df" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>get_stats_df</strong> Copy passed <em>DataFrame</em>, use it to <strong>calculate totals
+<dd><p><strong>get_stats_df</strong> - Copy passed <em>DataFrame</em>, use it to <strong>calculate totals
 and averages per day/meeting/participants</strong>, sort, adds a total rows
 and export as DF</p>
 <dl class="field-list simple">
@@ -146,7 +146,7 @@ and export as DF</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.main">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.main" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>main</strong> In this module we will gather <strong>statistics</strong> from all meetings
+<dd><p><strong>main</strong> - In this module we will gather <strong>statistics</strong> from all meetings
 held in the Webex site. See function info for parameter 
 modification.</p>
 <div class="line-block">
@@ -157,7 +157,7 @@ modification.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.pages_list">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">pages_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.pages_list" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>pages_list</strong> Performs a GET against the passed url and potential 
+<dd><p><strong>pages_list</strong> - Performs a GET against the passed url and potential 
 next pages. Returns the response text in json if available, logs
 error code on fail</p>
 <dl class="field-list simple">
@@ -179,7 +179,7 @@ error code on fail</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="meeting_statistics.part_list">
 <span class="sig-prename descclassname"><span class="pre">meeting_statistics.</span></span><span class="sig-name descname"><span class="pre">part_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meetingId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#meeting_statistics.part_list" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>part_list</strong> Performs a GET to retrieve participants of the 
+<dd><p><strong>part_list</strong> - Performs a GET to retrieve participants of the 
 passed meeting. Returns them as a list if available, 
 logs error code on fail</p>
 <dl class="field-list simple">
@@ -222,7 +222,7 @@ logs error code on fail</p>
 <li class="toctree-l1"><a class="reference internal" href="convert_excel.html">convert_excel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_excel_nopandas.html">convert_excel_nopandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_meetings.html">create_meetings module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meetings_part.html">meetings_part</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meetings_part.html">meetings_part_stats</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">meeting_statistics module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="environment.html">environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faker_file.html">faker_file</a></li>
@@ -232,7 +232,7 @@ logs error code on fail</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="meetings_part.html" title="previous chapter">meetings_part</a></li>
+      <li>Previous: <a href="meetings_part.html" title="previous chapter">meetings_part_stats</a></li>
       <li>Next: <a href="environment.html" title="next chapter">environment</a></li>
   </ul></li>
 </ul>

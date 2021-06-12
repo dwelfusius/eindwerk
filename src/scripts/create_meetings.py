@@ -5,13 +5,12 @@ from environment import int_automation as env
 
 
 def main():
-    """**main**  Main from convert_excel without parameters will generate a dictionary based on
+    """**main** - Main from convert_excel without parameters will generate a dictionary based on
     the defaults timezone:Europe/Brussels and file:list_webex.xlsx.
     If another file or timezone is required you can enter one or
     both underneath. 
-    
     |
-    
+
     For every entry in the data dict the child dict is converted to
     JSON and sent via a POST request to the WEBEX REST API. This creates
     the meeting and checks if status_code==200. If not an error is printed

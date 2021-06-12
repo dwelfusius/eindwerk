@@ -8,7 +8,7 @@ import json
 fail_req = []
 
 def get_meetings():
-    """**get_meetings** Retrieve all meetings created by the chosen
+    """**get_meetings** - Retrieve all meetings created by the chosen
     automation account.
 
     :return: all the meetings adhering to parameters
@@ -20,7 +20,7 @@ def get_meetings():
     return json.loads(response.text)
 
 def inv_count(meetingId):
-    """**inv_count** Count the invitees for a passed meeting id
+    """**inv_count** - Count the invitees for a passed meeting id
     and return them as an integer. On error return 0.
 
     :param meetingId: a webex meeting
@@ -57,7 +57,7 @@ def inv_count(meetingId):
 
 
 def part_list(meetingId):
-    """**part_list** Performs a GET to retrieve participants of the 
+    """**part_list** - Performs a GET to retrieve participants of the 
     passed meeting. Returns them as a list if available, 
     logs error code on fail
 
@@ -81,7 +81,7 @@ def part_list(meetingId):
 
 
 def get_part_stats(m):
-    """**get_part_stats** Calculate amount of participants and minutes in 
+    """**get_part_stats** - Calculate amount of participants and minutes in 
     meeting info of passed meeting.
 
     :param m: a list of dictionaries with meeting details
@@ -128,7 +128,7 @@ def get_part_stats(m):
         return part_stats_dict
 
 def meeting_params(months=1):
-    """**meeting_params** Retrieve the parameters needed to
+    """**meeting_params** - Retrieve the parameters needed to
     list meetings for the report.
 
     :param months: time offset in months, defaults to 1
@@ -158,7 +158,7 @@ def meeting_params(months=1):
 
 
 def main():
-    """**main** In this module we gather statistics about the meetings
+    """**main** - In this module we gather statistics about the meetings
     organised by a specific account, presumably the automation account.
 
     |

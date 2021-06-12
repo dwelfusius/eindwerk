@@ -71,6 +71,18 @@ def get_invitees(uni_mt, mt_list):
 
 
 def main(file='list_webex.xlsx',tzone_str='Europe/Brussels'):
+    """**main** - Converts an excel file to a dict suitable for creating
+    webex meetings via the Webex REST api with lists and dicts.
+
+    :param file: source data do convert, defaults to 'list_webex.xlsx'
+    :type file: str, optional
+    :param tzone_str: desired timezone, defaults to 'Europe/Brussels'
+    :type tzone_str: str, optional
+    
+    |
+
+    """
+    file = 'fake_list_webex.xlsx'
     # Open the workbook and select a worksheet
     wb = px.load_workbook(file)
     sheet = wb['list_webex']

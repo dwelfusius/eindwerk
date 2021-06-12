@@ -12,7 +12,7 @@ fail_req = []
 
 
 def get_mailaddress(pages):
-    """**get_mailaddress** Iterates over webex people api responses 
+    """**get_mailaddress** - Iterates over webex people api responses 
 
     :param pages: http response pages
     :type pages: dict
@@ -31,7 +31,7 @@ def get_mailaddress(pages):
 
 
 def pages_list(url):
-    """**pages_list** Performs a GET against the passed url and potential 
+    """**pages_list** - Performs a GET against the passed url and potential 
     next pages. Returns the response text in json if available, logs
     error code on fail
 
@@ -61,7 +61,7 @@ def pages_list(url):
 
 
 def part_list(meetingId):
-    """**part_list** Performs a GET to retrieve participants of the 
+    """**part_list** - Performs a GET to retrieve participants of the 
     passed meeting. Returns them as a list if available, 
     logs error code on fail
 
@@ -85,7 +85,7 @@ def part_list(meetingId):
 
 
 def get_part_stats(m):
-    """**get_part_stats** Calculate amount of participants and minutes in 
+    """**get_part_stats** - Calculate amount of participants and minutes in 
     meeting info of passed meeting.
 
     :param m: a list of dictionaries with meeting details
@@ -121,7 +121,7 @@ def get_part_stats(m):
 
 
 def get_param(time_unit='days', age=int(14)):
-    """**get_param** morph the needed parameter values in into a dict object
+    """**get_param** - Morph the needed parameter values in into a dict object
     to use in the api request
 
     :param time_unit: time measurement to use, defaults to 'days'
@@ -147,7 +147,7 @@ def get_param(time_unit='days', age=int(14)):
 
 
 def get_meeting(m):
-    """**get_meeting** Create a dictionary from passed meeting
+    """**get_meeting** - Create a dictionary from passed meeting
 
     :param m: a list of dictionaries with meeting details
     :type m: list
@@ -168,7 +168,7 @@ def get_meeting(m):
 
 
 def get_stats_df(meetings_df):
-    """**get_stats_df** Copy passed *DataFrame*, use it to **calculate totals
+    """**get_stats_df** - Copy passed *DataFrame*, use it to **calculate totals
     and averages per day/meeting/participants**, sort, adds a total rows
     and export as DF
 
@@ -237,7 +237,7 @@ def get_stats_df(meetings_df):
 
 
 def main():
-    """**main** In this module we will gather **statistics** from all meetings
+    """**main** - In this module we will gather **statistics** from all meetings
     held in the Webex site. See function info for parameter 
     modification.
     
