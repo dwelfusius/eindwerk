@@ -140,7 +140,7 @@ def meeting_params(months=1):
 
     """
     date = dt.today() + r_delta(days=+1)
-    delta = r_delta(months=months)
+    delta = r_delta(months=months.__neg__())
     date_to = date.strftime(format='%Y-%m-%d')
     date_from = (date + delta).strftime(format='%Y-%m-%d')
     siteUrl = env['siteUrl']
@@ -149,8 +149,8 @@ def meeting_params(months=1):
     params = {
         'from': date_from,
         'to': date_to,
-        'siteUrl': siteUrl,
-        'hostEmail': hostEmail,
+        #'siteUrl': siteUrl,
+        #'hostEmail': hostEmail,
         'max': 100,
         'meetingType': 'meeting'
     }
@@ -166,15 +166,16 @@ def main():
     """
     mts_dict = get_meetings()
     mt_list = []
-    for m in mts_dict["items"]:
-        part_dict = get_part_stats(m)
-        if part_dict:
-            mt_list.append(part_dict)
-    part_stats_df = pd.DataFrame(mt_list)
-    part_stats_df.to_excel(
-        f'meeting_participant_stats.xlsx',
-        sheet_name='participant_stats', index=False
-    )
+    if mts_dict:
+        for m in mts_dict["items"]:
+            part_dict = get_part_stats(m)
+            if part_dict:
+                mt_list.append(part_dict)
+        part_stats_df = pd.DataFrame(mt_list)
+        part_stats_df.to_excel(
+            f'meeting_participant_stats.xlsx',
+            sheet_name='participant_stats', index=False
+        )
 
 # execute main when called directly
 if __name__ == '__main__':

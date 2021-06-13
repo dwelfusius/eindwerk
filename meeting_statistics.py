@@ -117,7 +117,10 @@ def get_part_stats(m):
         }
         return part_stats_dict
     else:
-        return {}
+        return {
+            'Participant_Min': 0,
+            'Participants': 0
+        }
 
 
 def get_param(time_unit='days', age=int(14)):
@@ -140,7 +143,7 @@ def get_param(time_unit='days', age=int(14)):
     param_dict = {
         'to': date.strftime(format='%Y-%m-%d'),
         'from': (date + date_d).strftime(format='%Y-%m-%d'),
-        'siteUrl': env['siteUrl'],
+        #'siteUrl': env['siteUrl'],
         'max': 100
     }
     return param_dict

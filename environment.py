@@ -17,7 +17,8 @@ biasc = {
 
 
 #integration with admin
-admin_token = 'OWJmZDFlYWUtM2JiNS00Njg3LTg1N2MtMDAwZmMxMTc3ZTM1Zjg5YmNkNzktMmEz_P0A1_8ffe788c-4bbf-4bd8-8adb-825c355cc81f'
+#admin_token = 'ZTcxM2JmOGMtNGIwMS00M2I3LThiNjEtMTkyYjM2ODI5MjQ5ZDkyMzlmN2ItMmUz_P0A1_8ffe788c-4bbf-4bd8-8adb-825c355cc81f'
+admin_token = 'MWViOWJhZDItOGVjYi00N2FkLWIxNTctM2MxY2MyMDgzM2YyMTRkOGY5NmQtODFj_P0A1_8ffe788c-4bbf-4bd8-8adb-825c355cc81f'
 int_report ={
 'token' : admin_token,
 'hostEmail' : 'eindwerk.automation@outlook.be',
@@ -27,7 +28,7 @@ int_report ={
 }}
 
 #integration with automation
-aut_token = 'MzY5MDE3N2QtZGYzNC00MWJkLWIxMmItNjhlNjk2YmU1YzJhNWZlMjE3Y2UtYjVk_P0A1_8ffe788c-4bbf-4bd8-8adb-825c355cc81f'
+aut_token = 'YTFiYjNiYWEtMGVjNi00NDc1LWE1NTAtZDc1MTUwOGUwOWVkMTQyMTRhZjAtMDc4_P0A1_8ffe788c-4bbf-4bd8-8adb-825c355cc81f'
 int_automation ={
 'token' : aut_token,
 'siteUrl': 'eindwerk.webex.com',
