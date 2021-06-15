@@ -13,10 +13,7 @@ def main():
 
     For every entry in the data dict the child dict is converted to
     JSON and sent via a POST request to the WEBEX REST API. This creates
-    the meeting and checks if status_code is 200 or 201 . If not an error is printed
-    
-    |
-    
+    the meeting and checks if status_code is 200 or 201 . If not an error is printed.    
     """    
     data_dict = convert_excel.main()
 

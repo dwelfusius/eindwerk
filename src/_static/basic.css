@@ -176,7 +176,14 @@ table.indextable td {
 table.indextable ul {
     margin-top: 0;
     margin-bottom: 0;
-    list-style-type: none;
+    list-style-type: circle;
+}
+table.indextable ul li {
+    padding-bottom: 8px;
+}
+table.indextable ul ul {
+    margin-top:8px !important;
+    list-style-type: disc;
 }
 
 table.indextable > tbody > tr > td > ul {
@@ -512,6 +519,7 @@ table.hlist td {
 
 .sig {
 	font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    margin:0 0 20px 0;
 }
 
 .sig-name, code.descname {
@@ -841,7 +849,7 @@ div.literal-block-wrapper {
 
 code.xref, a code {
     background-color: transparent;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
@@ -902,3 +910,4 @@ div.math:hover a.headerlink {
         display: none;
     }
 }
+

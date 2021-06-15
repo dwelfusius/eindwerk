@@ -18,9 +18,6 @@ def get_mailaddress(pages):
     :type pages: dict
     :return: a list of unique emailadresses
     :rtype: list
-    
-    |
-
     """
 
     list_mails = []
@@ -39,10 +36,8 @@ def pages_list(url):
     :type url: str
     :yield: response text from request
     :rtype: json
-    
-    |
-    
     """
+
     f_page = requests.get(url, headers=env['headers'])
     if f_page.status_code == 200:
         yield f_page.json()
@@ -69,10 +64,8 @@ def part_list(meetingId):
     :type meetingId: str
     :return: the items key value from the get request
     :rtype: list
-    
-    |
-    
     """
+
     url = "https://webexapis.com/v1/meetingParticipants"
     uri = f"{url}?meetingId={meetingId}"
     participants = requests.get(uri, headers=env['headers'])
@@ -92,10 +85,8 @@ def get_part_stats(m):
     :type m: list
     :return: calculated participant count and attendance per meeting
     :rtype: dict
-    
-    |
-    
     """
+
     parts = (part_list(m.id))
     if parts:
         parts_df = pd.DataFrame()
@@ -134,10 +125,8 @@ def get_param(time_unit='days', age=int(14)):
     :type age: int, optional
     :return: dictionary with parameter values
     :rtype: dict
-    
-    |
-    
     """
+
     date_d = delta(**{time_unit: age.__neg__()})
     date = dt.today() + delta(days=+1)
     param_dict = {
@@ -156,10 +145,8 @@ def get_meeting(m):
     :type m: list
     :return: dictionary with meeting information
     :rtype: dict
-    
-    |
-    
     """
+
     mt_dict = {
         'id': m.id,
         'day': dt.strftime(m.start, format='%d/%m/%Y'),
@@ -179,10 +166,8 @@ def get_stats_df(meetings_df):
     :type df: DataFrame
     :return: calculated and sorted meeting statistics
     :rtype: DataFrame
-    
-    |
-    
     """
+
     if not meetings_df.empty:
         cp_df = meetings_df.copy(deep=True)
         cp_df.fillna(0, inplace=True, downcast='infer')
@@ -243,10 +228,8 @@ def main():
     """**main** - In this module we will gather **statistics** from all meetings
     held in the Webex site. See function info for parameter 
     modification.
-    
-    |
-    
     """
+    
     begin_time = dt.now()
     print(dt.now())
     url = "https://webexapis.com/v1/"

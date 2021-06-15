@@ -13,9 +13,6 @@ def parse_time(cols, df, tzo):
     :type tzo: string
     :return: list of modified columns
     :rtype: list
-
-    |
-
     """
 
     col_list = []
@@ -33,9 +30,6 @@ def inv_select(df):
     :type df: DataFrame
     :return: nested dict with all attendees per meeting name
     :rtype: dict
-
-    |
-
     """
     inv_dic = {}
     for mt_name in df['name_meeting'].unique():
@@ -58,9 +52,6 @@ def main(tzone_str='Europe/Brussels', sheet='list_webex.xlsx'):
     :type sheet: str, optional
     :return: a nested dict of unique meetings + participants
     :rtype: dict
-
-    |
-    
     """
 
     df = read_excel(sheet, sheet_name=0, dtype=str)

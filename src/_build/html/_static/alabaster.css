@@ -437,8 +437,8 @@ dl dd {
     margin-left: 30px;
 }
 dl.function {
-    margin: 40px 0 0 0;
-    padding: 40px 0 0 0;
+    margin: 30px 0 0 0;
+    padding: 30px 0 0 0;
     border-top: 1px solid #999;
 }
 dl.function > dd > p {
@@ -717,3 +717,4 @@ nav#breadcrumbs li+li:before {
         display: none;
     }
 }
+

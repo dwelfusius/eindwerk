@@ -3,9 +3,9 @@
 /* -- page layout ----------------------------------------------------------- */
 
 body {
-    font-family: Tahoma, serif;
+    font-family: Georgia, serif;
     font-size: 17px;
-    background-color: rgb(193, 231, 243);
+    background-color: #fff;
     color: #000;
     margin: 0;
     padding: 0;
@@ -23,13 +23,16 @@ div.documentwrapper {
 }
 
 div.bodywrapper {
-    margin: 0 0 0 220px;
+    margin: 0 0 0 270px;
 }
 
 div.sphinxsidebar {
-    width: 220px;
+    width: 260px;
     font-size: 14px;
     line-height: 1.5;
+}
+div.sphinxsidebar #searchbox {
+    margin-top:40px;
 }
 
 hr {
@@ -48,19 +51,21 @@ div.body > .section {
 
 div.footer {
     width: 940px;
-    margin: 20px auto 30px auto;
-    font-size: 14px;
-    color: #888;
+    margin: 80px auto 40px auto;
+    font-size: 17px;
+    color: #333;
     text-align: right;
+    border-top:1px solid #999;
+    padding-top:15px;
 }
 
 div.footer a {
-    color: #888;
+    color: #333;
 }
 
 p.caption {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 17px;
 }
 
 
@@ -80,7 +85,7 @@ div.sphinxsidebar a:hover {
 }
 
 div.sphinxsidebarwrapper {
-    padding: 18px 10px;
+    padding: 0px 10px 18px 10px;
 }
 
 div.sphinxsidebarwrapper p.logo {
@@ -90,9 +95,9 @@ div.sphinxsidebarwrapper p.logo {
 }
 
 div.sphinxsidebarwrapper h1.logo {
-    margin-top: -10px;
+    margin-top: 0;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     text-align: left;
 }
 
@@ -183,12 +188,14 @@ div.sphinxsidebar h3.donation {
 
 a {
     color: #004B6B;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
 }
 
 a:hover {
     color: #6D4100;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 1px solid #999;
 }
 
 div.body h1,
@@ -203,13 +210,16 @@ div.body h6 {
     padding: 0;
 }
 
-div.body h1 { margin-top: 0; padding-top: 0; font-size: 240%; }
-div.body h2 { font-size: 180%; }
-div.body h3 { font-size: 150%; }
-div.body h4 { font-size: 130%; }
+div.body h1 { margin-top: 0; padding-top: 0; font-size: 180%; }
+div.body h2 { font-size: 150%; }
+div.body h3 { font-size: 130%; }
+div.body h4 { font-size: 110%; }
 div.body h5 { font-size: 100%; }
 div.body h6 { font-size: 100%; }
 
+div.body > section:first-child h1 {
+    margin-bottom:20px;
+}
 a.headerlink {
     color: #DDD;
     padding: 0 4px;
@@ -425,6 +435,14 @@ dl {
 
 dl dd {
     margin-left: 30px;
+}
+dl.function {
+    margin: 30px 0 0 0;
+    padding: 30px 0 0 0;
+    border-top: 1px solid #999;
+}
+dl.function > dd > p {
+    color:#0c736c;
 }
 
 blockquote {
@@ -699,3 +717,4 @@ nav#breadcrumbs li+li:before {
         display: none;
     }
 }
+

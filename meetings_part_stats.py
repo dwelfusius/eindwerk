@@ -27,9 +27,6 @@ def inv_count(meetingId):
     :type meetingId: str
     :return: total count of invitees
     :rtype: int
-    
-    |
-
     """
     params = {
         'meetingId':meetingId,
@@ -65,9 +62,6 @@ def part_list(meetingId):
     :type meetingId: str
     :return: the items key value from the get request
     :rtype: list
-
-    |
-
     """
     url = "https://webexapis.com/v1/meetingParticipants"
     uri = f"{url}?meetingId={meetingId}"
@@ -88,9 +82,6 @@ def get_part_stats(m):
     :type m: list
     :return: calculated participant count and attendance per meeting
     :rtype: dict
-    
-    |
-
     """
     parts = part_list(m["id"])
     if parts:
@@ -135,9 +126,6 @@ def meeting_params(months=1):
     :type months: int, optional
     :return: parameters for list meeting request
     :rtype: dict
-
-    |
-
     """
     date = dt.today() + r_delta(days=+1)
     delta = r_delta(months=months.__neg__())
@@ -160,10 +148,8 @@ def meeting_params(months=1):
 def main():
     """**main** - In this module we gather statistics about the meetings
     organised by a specific account, presumably the automation account.
-
-    |
-
     """
+    
     mts_dict = get_meetings()
     mt_list = []
     if mts_dict:
