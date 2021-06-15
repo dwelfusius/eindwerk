@@ -40,34 +40,56 @@
 git clone https://github.com/ObjectIsAdvantag/webex-integration-admin
 <span class="nb">cd</span> ~/webex-integration-admin
 npm install
-<span class="c1"># After creating your webex integration modify params here to generate new oath requests.</span>
+<span class="c1"># After creating your webex integration modify params here to generate</span>
+<span class="c1"># new oath requests.</span>
+
 <span class="c1"># This is the return path you give to your integration in Webex</span>
 <span class="nv">uri</span><span class="o">=</span><span class="s2">&quot;http://localhost:9090/oauth&quot;</span>
 
 <span class="c1"># This is the client id of your integration</span>
-<span class="nv">client_id</span><span class="o">=</span><span class="s2">&quot;C1785e7c046756972f8e8b3dfc2540b7013d6c6a779628c4889ee1bba20b759ee&quot;</span>
+<span class="nv">id</span><span class="o">=</span><span class="s2">&quot;C1785e7c046756972f8e8b3dfc2540b7013d6c6a779628c4889ee1bba20b759ee&quot;</span>
 
-<span class="c1"># This is the secret your integration shows you, ONCE! So save it or you need to create a new secret.</span>
-<span class="nv">client_secret</span><span class="o">=</span><span class="s2">&quot;9ccb26cb5b3c8faccf77b12c3d166dca58c69dd8cc4303f633c89f99d9f54ea4&quot;</span>
+<span class="c1"># This is the secret your integration shows you, ONCE! </span>
+<span class="c1"># So save it or you need to create a new secret.</span>
+<span class="nv">secret</span><span class="o">=</span><span class="s2">&quot;9ccb26cb5b3c8faccf77b12c3d166dca58c69dd8cc4303f633c89f99d9f54ea4&quot;</span>
 
-<span class="c1">#FULL TOKEN to use if you are unsure what rights you need, don&#39;t use for prod, handy for whidling down permissions to principle of least privilege</span>
-<span class="nv">scope_full</span><span class="o">=</span><span class="k">$(</span>cat <span class="s">&lt;&lt;meeting:schedules_read meeting</span>:schedules_write meeting:recordings_read meeting:recordings_write meeting:preferences_read meeting:preferences_write meeting:controls_read 
-meeting:controls_write meeting:participants_read meeting:participants_write meeting:admin_participants_read meeting:admin_schedule_read meeting:admin_schedule_write meeting:admin_recordings_read 
-meeting:admin_recordings_write meeting:admin_preferences_write meeting:admin_preferences_read spark:calls_read spark:devices_read spark:devices_write spark:memberships_read spark:memberships_write 
-spark:messages_read spark:messages_write spark:organizations_read spark:people_read spark:people_write spark:places_read spark:places_write spark:rooms_read spark:rooms_write 
-spark:team_memberships_read spark:team_memberships_write spark:teams_read spark:teams_write spark:xapi_statuses spark:xapi_commands spark-admin:devices_read spark-admin:devices_write 
-spark-admin:licenses_read spark-admin:organizations_read spark-admin:organizations_write spark-admin:people_read spark-admin:people_write spark-admin:places_read spark-admin:places_write 
-spark-admin:resource_group_memberships_read spark-admin:resource_group_memberships_write spark-admin:resource_groups_read spark-admin:roles_read spark-admin:call_qualities_read 
-spark-admin:workspaces_read spark-admin:workspaces_write spark-compliance:events_read spark-compliance:memberships_read spark-compliance:memberships_write spark-compliance:messages_read 
-spark-compliance:messages_write spark-compliance:rooms_read spark-compliance:rooms_write spark-compliance:team_memberships_read spark-compliance:team_memberships_write spark-compliance:teams_read 
-spark-admin:broadworks_enterprises_read identity:placeonetimepassword_create spark:calls_write spark-admin:hybrid_clusters_read spark-admin:hybrid_connectors_read spark-admin:broadworks_subscribers_read 
-spark-admin:broadworks_subscribers_write analytics:read_all audit:events_read<span class="k">)</span>
+<span class="c1">#FULL TOKEN! To use if you are unsure what rights you need, don&#39;t use </span>
+<span class="c1">#for prod, handy for whidling down permissions to principle </span>
+<span class="c1">#of least privilege</span>
+<span class="nv">scope_full</span><span class="o">=</span><span class="s2">&quot;meeting:schedules_read meeting:schedules_write \</span>
+<span class="s2">meeting:recordings_read meeting:recordings_write meeting:preferences_read \</span>
+<span class="s2">meeting:preferences_write meeting:controls_read meeting:controls_write \</span>
+<span class="s2">meeting:participants_read meeting:participants_write meeting:admin_participants_read \</span>
+<span class="s2">meeting:admin_schedule_read meeting:admin_schedule_write meeting:admin_recordings_read \</span>
+<span class="s2">meeting:admin_recordings_write meeting:admin_preferences_write \</span>
+<span class="s2">meeting:admin_preferences_read spark:calls_read spark:devices_read spark:devices_write \</span>
+<span class="s2">spark:memberships_read spark:memberships_write spark:messages_read spark:messages_write \</span>
+<span class="s2">spark:organizations_read spark:people_read spark:people_write spark:places_read \</span>
+<span class="s2">spark:places_write spark:rooms_read spark:rooms_write spark:team_memberships_read \</span>
+<span class="s2">spark:team_memberships_write spark:teams_read spark:teams_write spark:xapi_statuses \</span>
+<span class="s2">spark:xapi_commands spark-admin:devices_read spark-admin:devices_write \</span>
+<span class="s2">spark-admin:licenses_read spark-admin:organizations_read spark-admin:organizations_write \</span>
+<span class="s2">spark-admin:people_read spark-admin:people_write spark-admin:places_read spark-admin:places_write \</span>
+<span class="s2">spark-admin:resource_group_memberships_read spark-admin:resource_group_memberships_write \</span>
+<span class="s2">spark-admin:resource_groups_read spark-admin:roles_read spark-admin:call_qualities_read \</span>
+<span class="s2">spark-admin:workspaces_read spark-admin:workspaces_write spark-compliance:events_read \</span>
+<span class="s2">spark-compliance:memberships_read spark-compliance:memberships_write \</span>
+<span class="s2">spark-compliance:messages_read spark-compliance:messages_write spark-compliance:rooms_read \</span>
+<span class="s2">spark-compliance:rooms_write spark-compliance:team_memberships_read \</span>
+<span class="s2">spark-compliance:team_memberships_write spark-compliance:teams_read \</span>
+<span class="s2">spark-admin:broadworks_enterprises_read identity:placeonetimepassword_create spark:calls_write \</span>
+<span class="s2">spark-admin:hybrid_clusters_read spark-admin:hybrid_connectors_read \</span>
+<span class="s2">spark-admin:broadworks_subscribers_read spark-admin:broadworks_subscribers_write \</span>
+<span class="s2">analytics:read_all audit:events_read&quot;</span>
+
 <span class="c1">#reporting account meeting statistics</span>
-<span class="nv">scope_report</span><span class="o">=</span><span class="s2">&quot;meeting:admin_participants_read meeting:admin_schedule_read spark-admin:people_read&quot;</span>
+<span class="nv">scope_report</span><span class="o">=</span><span class="s2">&quot;meeting:admin_participants_read meeting:admin_schedule_read \</span>
+<span class="s2">spark-admin:people_read&quot;</span>
 <span class="c1">#scopes for automation create + own meetings report</span>
-<span class="nv">scope_aut</span><span class="o">=</span><span class="s2">&quot;meeting:schedules_read meeting:schedules_write meeting:participants_read	meeting:participants_write&quot;</span>
+<span class="nv">scope_aut</span><span class="o">=</span><span class="s2">&quot;meeting:schedules_read meeting:schedules_write \</span>
+<span class="s2">meeting:participants_read	meeting:participants_write&quot;</span>
 
-<span class="nv">DEBUG</span><span class="o">=</span>oauth* <span class="nv">PORT</span><span class="o">=</span><span class="m">9090</span> <span class="nv">REDIRECT_URI</span><span class="o">=</span><span class="nv">$uri</span> <span class="nv">CLIENT_ID</span><span class="o">=</span><span class="nv">$client_id</span> <span class="nv">CLIENT_SECRET</span><span class="o">=</span><span class="nv">$client_secret</span> <span class="nv">SCOPES</span><span class="o">=</span><span class="nv">$scope_aut</span>  node static.js
+<span class="nv">DEBUG</span><span class="o">=</span>oauth* <span class="nv">PORT</span><span class="o">=</span><span class="m">9090</span> <span class="nv">REDIRECT_URI</span><span class="o">=</span><span class="nv">$uri</span> <span class="nv">CLIENT_ID</span><span class="o">=</span><span class="nv">$id</span> <span class="nv">CLIENT_SECRET</span><span class="o">=</span><span class="nv">$secret</span> <span class="nv">SCOPES</span><span class="o">=</span><span class="nv">$scope_aut</span> node static.js
 </pre></div>
 </div>
 </section>
