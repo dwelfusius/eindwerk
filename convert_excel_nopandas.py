@@ -143,6 +143,7 @@ def main(file='list_webex.xlsx',tzone_str='Europe/Brussels'):
             'timezone': tzone_str,
             'enabledAutoRecordMeeting': False,
             'allowAnyUserToBeCoHost': False,
+            'sendEmail': True,
             'invitees': invitees[title]
         }
         # Add one mt dict object to final dataset

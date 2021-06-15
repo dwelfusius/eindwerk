@@ -67,7 +67,7 @@ def main(tzone_str='Europe/Brussels', sheet='list_webex.xlsx'):
                 'timezone': tzone_str,
                 'enabledAutoRecordMeeting': False,
                 'allowAnyUserToBeCoHost': False,
-                'sendEmail': False,
+                'sendEmail': True,
                 'invitees': inv_dict[name]}
     return d
 

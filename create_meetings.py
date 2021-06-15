@@ -6,7 +6,7 @@ from environment import int_automation as env
 
 def main():
     """**main** - Main from convert_excel without parameters will generate a dictionary based on
-    the defaults timezone:Europe/Brussels and file:list_webex.xlsx.
+    the defaults *timezone*: **Europe/Brussels** and *file*: **list_webex.xlsx**.
     If another file or timezone is required you can enter one or
     both underneath. 
     |
