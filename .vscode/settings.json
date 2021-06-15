@@ -21,5 +21,6 @@
         "v",
         "webex",
         "zoneinfo"
-    ]
+    ],
+    "restructuredtext.confPath": "${workspaceFolder}/src"
 }

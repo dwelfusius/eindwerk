@@ -38,22 +38,80 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.get_headers">
 <span class="sig-prename descclassname"><span class="pre">convert_excel_nopandas.</span></span><span class="sig-name descname"><span class="pre">get_headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel_nopandas.get_headers" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>get_headers Generate a list to be used as headers by
+reading in the first line of the worksheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sheet</strong> (<em>worksheet via openpyxl</em>) – the required worksheet as a data object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of header names</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.get_invitees">
 <span class="sig-prename descclassname"><span class="pre">convert_excel_nopandas.</span></span><span class="sig-name descname"><span class="pre">get_invitees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uni_mt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mt_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel_nopandas.get_invitees" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>get_invitees Per meeting collect all attendees in one 
+list of dictionaries using the meeting name as key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uni_mt</strong> (<em>dict</em>) – collection of unique meetings</p></li>
+<li><p><strong>mt_list</strong> (<em>list</em>) – all excel row entries</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all meetings with their full invite list</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.get_meetings">
 <span class="sig-prename descclassname"><span class="pre">convert_excel_nopandas.</span></span><span class="sig-name descname"><span class="pre">get_meetings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mt_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel_nopandas.get_meetings" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>get_meetings  Create a set of unique meetings based
+on the title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mt_list</strong> (<em>list</em>) – all worksheet row entries</p></li>
+<li><p><strong>headers</strong> (<em>list</em>) – list of header names</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of unique meetings</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.get_rows">
 <span class="sig-prename descclassname"><span class="pre">convert_excel_nopandas.</span></span><span class="sig-name descname"><span class="pre">get_rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel_nopandas.get_rows" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>get_rows Generate a list populated with every row in
+the passed worksheet, skipping the header row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sheet</strong> (<em>worksheet via openpyxl</em>) – the required worksheet as a data object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all row entries</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.main">
@@ -68,15 +126,29 @@ webex meetings via the Webex REST api with lists and dicts.</p>
 </ul>
 </dd>
 </dl>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert_excel_nopandas.parse_time">
 <span class="sig-prename descclassname"><span class="pre">convert_excel_nopandas.</span></span><span class="sig-name descname"><span class="pre">parse_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tzone_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert_excel_nopandas.parse_time" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p><strong>parse_time</strong> - Function to parse strings to time zone aware 
+datetime objects, and then convert them to ISO8601 format strings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>column</strong> (<em>string</em>) – name of the column to search value in</p></li>
+<li><p><strong>do</strong> (<em>dict</em>) – information about a unique meeting</p></li>
+<li><p><strong>tzone_str</strong> (<em>string</em>) – time zone</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>iso8601 date</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 

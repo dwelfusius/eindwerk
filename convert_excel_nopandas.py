@@ -4,22 +4,40 @@ from datetime import datetime as dt
 from backports.zoneinfo import ZoneInfo as zi
 
 def parse_time(column, do, tzone_str):
-    # merge date + hour into one string, choose method based on object type
+    """**parse_time** - Function to parse strings to time zone aware 
+    datetime objects, and then convert them to ISO8601 format strings
+
+    :param column: name of the column to search value in
+    :type column: string
+    :param do: information about a unique meeting
+    :type do: dict
+    :param tzone_str: time zone
+    :type tzone_str: string
+    :return: iso8601 date
+    :rtype: string
+    """
+    # merge date + hour into one string, choose method based on 
+    # object type being string or datetime
     if type(do['date_meeting']) == dt:
         d_str = do['date_meeting']
         d = str(d_str.day)+'/'+str(d_str.month)+'/' + \
             str(d_str.year)+' '+do[column+'_hour'] + ':00'
     else:
         d = do['date_meeting']+' '+do[column+'_hour'] + ':00'
-    # create a datetime object
     date = dt.strptime(d, '%d/%m/%Y %H:%M:%S').replace(tzinfo=zi(tzone_str))
-    # make the date object timezone aware
     date.replace(tzinfo=zi(tzone_str))
-    # return the date in isoformat
     return date.isoformat()
 
 
 def get_headers(sheet):
+    """get_headers Generate a list to be used as headers by
+    reading in the first line of the worksheet.
+
+    :param sheet: the required worksheet as a data object
+    :type sheet: worksheet via openpyxl
+    :return: list of header names
+    :rtype: list
+    """
     # list to hold header information
     headers = []
     # iterate through columns to fetch header and position
@@ -29,6 +47,14 @@ def get_headers(sheet):
 
 
 def get_rows(sheet):
+    """get_rows Generate a list populated with every row in
+    the passed worksheet, skipping the header row.
+
+    :param sheet: the required worksheet as a data object
+    :type sheet: worksheet via openpyxl
+    :return: all row entries
+    :rtype: list
+    """
     # List to hold row values
     mt_list = []
     # Iterate through each row in worksheet and fetch values into tuples
@@ -38,7 +64,17 @@ def get_rows(sheet):
 
 
 def get_meetings(mt_list, headers):
-    # Create a set of unique meetings
+    """get_meetings  Create a set of unique meetings based
+    on the title. 
+
+    :param mt_list: all worksheet row entries
+    :type mt_list: list
+    :param headers: list of header names
+    :type headers: list
+    :return: set of unique meetings
+    :rtype: dict
+    """
+
     unimt_dicts = {}
     for mt in mt_list:
         if not mt[0] in unimt_dicts:
@@ -53,12 +89,20 @@ def get_meetings(mt_list, headers):
 
 
 def get_invitees(uni_mt, mt_list):
+    """get_invitees Per meeting collect all attendees in one 
+    list of dictionaries using the meeting name as key
+
+    :param uni_mt: collection of unique meetings
+    :type uni_mt: dict
+    :param mt_list: all excel row entries
+    :type mt_list: list
+    :return: all meetings with their full invite list
+    :rtype: dict
+    """
     inv_dicts = {}
     for mt in uni_mt.items():
         inv_list = []
         inv_dict = {}
-        # create a dict per row in the list, using the col header 
-        # as key and col location as key and value index
         for i in mt_list:
             if mt[0] in i:
                 inv_dict = {
@@ -78,26 +122,20 @@ def main(file='list_webex.xlsx',tzone_str='Europe/Brussels'):
     :type file: str, optional
     :param tzone_str: desired timezone, defaults to 'Europe/Brussels'
     :type tzone_str: str, optional
-    
-    |
-
     """
-    file = 'fake_list_webex.xlsx'
-    # Open the workbook and select a worksheet
+
+    file = 'list_webex.xlsx'
     wb = px.load_workbook(file)
     sheet = wb['list_webex']
     headers = get_headers(sheet)
     rows = get_rows(sheet)
     mt_dict = get_meetings(rows, headers)
     invitees = get_invitees(mt_dict, rows)
-# Create list to collect information to convert to json
     mts_tree = {}
+
     for mt in mt_dict.items():
-        # replace mt by mt values to avoid unneeded '[1]' entries
         mt = mt[1]
-        # put title in a var because it is used multiple times, readability
         title = mt['name_meeting']
-        # Create dict object with mt name + aggregated members list
         mt_tree = {
             'title': title,
             'start': parse_time('start', mt, tzone_str),
